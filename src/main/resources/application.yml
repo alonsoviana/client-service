@@ -1,1 +1,22 @@
-
+server:
+ context-path: /test-java-2020
+ port: 8081
+ 
+spring:
+  datasource:   
+    driver-class-name: org.h2.Driver   
+    password: ''
+    show-sql: true
+    url: jdbc:h2:mem:TestJava2020
+    username: sa
+  h2:
+    console:
+      enabled: true   
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect 
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+  http:
+    encoding:
+      charset: UTF-8
