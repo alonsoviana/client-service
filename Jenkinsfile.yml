@@ -1,34 +1,35 @@
 pipeline {
     agent any 
     stages {
-	stage('Download code') {
-	    steps {
-	        // -- Configura variables
-   	        echo 'Configurando variables'
-   	        def mvnHome = tool 'M3'
-                env.PATH = "${mvnHome}/bin:${env.PATH}"
-                echo "var mvnHome='${mvnHome}'"
-                echo "var env.PATH='${env.PATH}'"   
-                // -- Descarga código desde SCM
-                echo 'Descargando código de SCM'
-                sh 'rm -rf *'
-                checkout scm
-	    }
-        stage('Build') { 
+        stage('Download code') {
             steps {
-                echo 'Compilando aplicación'
-   		sh 'mvn clean compile'
+                // -- Configura variables
+                echo 'Configurando variables'
+                def mvnHome = tool 'M3'
+                    env.PATH = "${mvnHome}/bin:${env.PATH}"
+                    echo "var mvnHome='${mvnHome}'"
+                    echo "var env.PATH='${env.PATH}'"   
+                    // -- Descarga código desde SCM
+                    echo 'Descargando código de SCM'
+                    sh 'rm -rf *'
+                    checkout scm
             }
-        }
-        stage('Test') { 
-            steps {
-                echo 'Realizando test'
-   		sh 'mvn test' 
+            stage('Build') { 
+                steps {
+                    echo 'Compilando aplicación'
+            sh 'mvn clean compile'
+                }
             }
-        }
-        stage('Deploy') { 
-            steps {
-                echo 'Desplegando' 
+            stage('Test') { 
+                steps {
+                    echo 'Realizando test'
+            sh 'mvn test' 
+                }
+            }
+            stage('Deploy') { 
+                steps {
+                    echo 'Desplegando' 
+                }
             }
         }
     }
