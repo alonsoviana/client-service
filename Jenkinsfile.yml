@@ -1,5 +1,8 @@
 pipeline {
-    agent any 
+    agent any
+    tools {
+        maven 'mvn'
+    }
     stages {
         stage('Download code') {
             steps {
