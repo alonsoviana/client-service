@@ -5,31 +5,27 @@ pipeline {
             steps {
                 // -- Configura variables
                 echo 'Configurando variables'
-                def mvnHome = tool 'M3'
-                    env.PATH = "${mvnHome}/bin:${env.PATH}"
-                    echo "var mvnHome='${mvnHome}'"
-                    echo "var env.PATH='${env.PATH}'"   
-                    // -- Descarga código desde SCM
-                    echo 'Descargando código de SCM'
-                    sh 'rm -rf *'
-                    checkout scm
+                // -- Descarga código desde SCM
+                echo 'Descargando código de SCM'
+                sh 'rm -rf *'
+                checkout scm
             }
-            stage('Build') { 
-                steps {
-                    echo 'Compilando aplicación'
-            sh 'mvn clean compile'
-                }
+        }    
+        stage('Build') { 
+            steps {
+                echo 'Compilando aplicación'
+                sh 'mvn clean compile'
             }
-            stage('Test') { 
-                steps {
-                    echo 'Realizando test'
-            sh 'mvn test' 
-                }
+        }
+        stage('Test') { 
+            steps {
+                echo 'Realizando test'
+                sh 'mvn test' 
             }
-            stage('Deploy') { 
-                steps {
-                    echo 'Desplegando' 
-                }
+        }
+        stage('Deploy') { 
+            steps {
+                echo 'Desplegando' 
             }
         }
     }
