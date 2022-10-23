@@ -17,7 +17,6 @@ pipeline {
         stage('Build') { 
             steps {
                 echo 'Compilando aplicación' 
-                mvn --version
                 sh 'mvn clean compile'
             }
         }
