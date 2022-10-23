@@ -17,8 +17,6 @@ pipeline {
         stage('Build') { 
             steps {
                 echo 'Compilando aplicación' 
-                export MAVEN_HOME=C:\Program Files (x86)\Maven\apache-maven-3.8.6
-                export PATH=$PATH:$MAVEN_HOME/bin
                 mvn --version
                 sh 'mvn clean compile'
             }
