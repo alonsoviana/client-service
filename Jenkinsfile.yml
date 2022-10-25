@@ -17,7 +17,7 @@ pipeline {
         stage('Build') { 
             steps {
                 echo 'Compilando aplicación' 
-                sh 'mvn clean compile'
+                sh 'mvn clean package'
             }
         }
         stage('Test') { 
