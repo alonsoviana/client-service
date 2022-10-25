@@ -28,7 +28,9 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                echo 'Desplegando' 
+                echo 'Desplegando'
+				sh 'copy target\\clientservice-0.0.1-SNAPSHOT.war D:\\Descargas\\apache-tomcat-9.0.41-windows-x64\\apache-tomcat-9.0.41\\webapps\\clientservice-0.0.1-SNAPSHOT.war'
+				sh 'D:\\Descargas\\apache-tomcat-9.0.41-windows-x64\\apache-tomcat-9.0.41\\bin\\startup.bat'
             }
         }
     }
