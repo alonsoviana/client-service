@@ -36,9 +36,9 @@ pipeline {
             steps {
                 echo 'Desplegando'
 				sh 'cp target/clientservice-0.0.1-SNAPSHOT.war D:/Descargas/apache-tomcat-9.0.41-windows-x64/apache-tomcat-9.0.41/webapps/'
-				sh 'sleep 5'
+				sh 'sleep 60'
 				sh 'D:/Descargas/apache-tomcat-9.0.41-windows-x64/apache-tomcat-9.0.41/bin/startup.bat'
-				sh 'sleep 5'
+				sh 'sleep 60'
 
             }
         }
