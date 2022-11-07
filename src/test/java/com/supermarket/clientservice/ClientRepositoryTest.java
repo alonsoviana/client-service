@@ -18,14 +18,22 @@ public class ClientRepositoryTest {
 
     @Test
     public void whenFindById_thenReturnAClient() {
+        ClientDetail clientDetail = ClientDetail.builder()
+                .id(1)
+                .email("avc@gmail.com")
+                .phonenumber("918452364")
+                .comments("Prueba")
+                .build();
+
         Client client = Client.builder()
                 .id(1)
                 .name("Juan")
                 .surname("Garcia")
                 .address("Gran vía")
                 .age(18)
+                .clientDetail(clientDetail)
                 .build();
         Client clientDB = clientRepository.getById(1);
-        Assertions.assertThat(client).isEqualTo(clientDB);
+        Assertions.assertThat(clientDB.getName()).isEqualTo(client.getName());
     }
 }
