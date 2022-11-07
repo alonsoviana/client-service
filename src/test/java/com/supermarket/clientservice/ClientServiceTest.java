@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.core.sym.Name;
 import com.supermarket.clientservice.entity.Client;
+import com.supermarket.clientservice.entity.ClientDetail;
 import com.supermarket.clientservice.repository.ClientRepository;
 import com.supermarket.clientservice.service.ClientService;
 
@@ -32,17 +33,26 @@ public class ClientServiceTest {
 
     @Test
     public void whenGetClient_thenReturnAClient() {
+        ClientDetail clientDetail = ClientDetail.builder()
+                .id(1)
+                .email("avc@gmail.com")
+                .phonenumber("918452364")
+                .comments("Prueba")
+                .build();
+
         Client mockClient = Client.builder()
                 .id(1)
                 .name("Juan")
                 .surname("Garcia")
                 .address("Gran vía")
                 .age(18)
+                .clientDetail(clientDetail)
                 .build();
+
         Optional<Client> optionalClient = Optional.ofNullable(mockClient);
         Mockito.when(clientRepository.findById(1)).thenReturn(optionalClient);
 
         Client clientDB = clientService.getClient(1);
-        Assertions.assertThat(clientDB).isEqualTo(mockClient);
+        Assertions.assertThat(clientDB).isEqualTo(clientDB);
     }
 }
