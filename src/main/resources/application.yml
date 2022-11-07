@@ -1,13 +1,15 @@
 server:
  context-path: /test-java-2020
  port: 8081
+ error:
+  include-message: always
  
 spring:
   datasource:   
     driver-class-name: org.h2.Driver   
     password: ''
     show-sql: true
-    url: jdbc:h2:mem:TestJava2020
+    url: jdbc:h2:mem:clientService
     username: sa
   h2:
     console:
@@ -20,3 +22,6 @@ spring:
   http:
     encoding:
       charset: UTF-8
+  mvc:
+      pathmatch:
+            matching-strategy: ant_path_matcher
